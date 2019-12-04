@@ -8,7 +8,7 @@ public class Withdraw extends Transaction {
     private final String accountId;
 
     public Withdraw(String transactionID, double amound, String accountId, int timestamp) {
-        super(transactionID, "Withdraw", amound, timestamp);
+        super(transactionID, TransactionType.WITHDRAW, amound, timestamp);
         this.accountId = accountId;
     }
 
@@ -21,7 +21,7 @@ public class Withdraw extends Transaction {
         try {
             toReturn.put("accountId", this.accountId);
             toReturn.put("transactionID", this.transactionID);
-            toReturn.put("type", this.type);
+            toReturn.put("type", this.type.name());
             toReturn.put("amound", this.amound);
             toReturn.put("timestamp", this.timestamp);
         } catch (JSONException e) {

@@ -9,7 +9,7 @@ public class Transfer extends Transaction {
     private final String toAccountId;
 
     public Transfer(String transactionID, double amound, String fromAccountId, String toAccountId, int timestamp) {
-        super(transactionID, "Transfer", amound, timestamp);
+        super(transactionID, TransactionType.TRANFER, amound, timestamp);
         this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
     }
@@ -28,7 +28,7 @@ public class Transfer extends Transaction {
             toReturn.put("fromAccountId", this.fromAccountId);
             toReturn.put("toAccountId", this.toAccountId);
             toReturn.put("transactionID", this.transactionID);
-            toReturn.put("type", this.type);
+            toReturn.put("type", this.type.name());
             toReturn.put("amound", this.amound);
             toReturn.put("timestamp", this.timestamp);
         } catch (JSONException e) {

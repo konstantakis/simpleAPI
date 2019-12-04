@@ -4,11 +4,11 @@ import org.json.JSONObject;
 
 public abstract class Transaction {
     protected final String transactionID;
-    protected final String type;  // Withdraw, Deposit, Transfer 
+    protected final TransactionType type;  // DEPOSIT, WITHDRAW, TRANFER
     protected final double amound;
     protected final int timestamp;
 
-    protected Transaction(String transactionID, String type, double amound, int timestamp) {
+    protected Transaction(String transactionID, TransactionType type, double amound, int timestamp) {
         this.transactionID = transactionID;
         this.type = type;
         this.amound = amound;
@@ -19,7 +19,7 @@ public abstract class Transaction {
         return transactionID;
     }
 
-    public String getType() {
+    public TransactionType getType() {
         return type;
     }
 

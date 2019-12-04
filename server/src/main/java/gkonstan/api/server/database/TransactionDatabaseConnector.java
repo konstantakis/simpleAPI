@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import gkonstan.api.server.model.Transaction;
+import gkonstan.api.server.model.TransactionType;
 
 public class TransactionDatabaseConnector {
     private static TransactionDatabaseConnector instance;
@@ -21,17 +22,16 @@ public class TransactionDatabaseConnector {
         return instance;
     }
 
-    /* Type must be equal to one of: Deposit, Withdraw, Transfer */
-    public String getNextId(String Type){
+    public String getNextId(TransactionType Type){
         String idPrefix;
         switch (Type) {
-            case "Deposit":
+            case DEPOSIT:
                 idPrefix = "dep";
                 break;
-            case "Withdraw":
+            case WITHDRAW:
                 idPrefix = "wit";
                 break;
-            case "Transfer":
+            case TRANFER:
                 idPrefix = "tra";
                 break;
         
@@ -75,7 +75,7 @@ public class TransactionDatabaseConnector {
         return transactionDB;
     }
 
-    public List<Transaction> getAllTransactionsByType(String type) {
+    public List<Transaction> getAllTransactionsByType(TransactionType type) {
         return transactionDB.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
     }
 }
