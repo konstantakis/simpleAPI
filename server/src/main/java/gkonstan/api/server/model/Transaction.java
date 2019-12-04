@@ -2,22 +2,18 @@ package gkonstan.api.server.model;
 
 import org.json.JSONObject;
 
-public abstract class Transaction {
-    protected final String transactionID;
+public abstract class Transaction extends Model{
     protected final TransactionType type;  // DEPOSIT, WITHDRAW, TRANFER
     protected final double amound;
     protected final int timestamp;
 
     protected Transaction(String transactionID, TransactionType type, double amound, int timestamp) {
-        this.transactionID = transactionID;
+        super(transactionID);
         this.type = type;
         this.amound = amound;
         this.timestamp = timestamp;
     }
 
-    public String getTransactionID() {
-        return transactionID;
-    }
 
     public TransactionType getType() {
         return type;
@@ -50,6 +46,6 @@ public abstract class Transaction {
         Transaction c = (Transaction) o; 
           
         // Compare the data members and return accordingly  
-        return this.transactionID.equals(c.transactionID); 
+        return this.id.equals(c.id); 
     }
 }

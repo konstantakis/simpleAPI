@@ -8,23 +8,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Customer {
-    private final String customerId;
+public class Customer extends Model{
     private String name;
     private String surname;
     private Double totalBalance;
     private List<String> accounts;
 
     public Customer(String customerId, String name, String surname, Double totalBalance) {
-        this.customerId = customerId;
+        super(customerId);
         this.name = name;
         this.surname = surname;
         this.totalBalance = totalBalance;
         this.accounts = new ArrayList<>();
-    }
-
-    public String getCustomerId() {
-        return customerId;
     }
 
     public String getName() {
@@ -88,13 +83,13 @@ public class Customer {
         Customer c = (Customer) o; 
           
         // Compare the data members and return accordingly  
-        return this.customerId.equals(c.customerId); 
+        return this.id.equals(c.id); 
     }
 
     public JSONObject toJSON(){
         JSONObject toReturn = new JSONObject();
         try {
-            toReturn.put("customerId", this.customerId);
+            toReturn.put("customerId", this.id);
             toReturn.put("name", this.name);
             toReturn.put("surname", this.surname);
             toReturn.put("totalBalance", this.totalBalance);

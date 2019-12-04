@@ -27,7 +27,7 @@ public class Transfer extends Transaction {
         try {
             toReturn.put("fromAccountId", this.fromAccountId);
             toReturn.put("toAccountId", this.toAccountId);
-            toReturn.put("transactionID", this.transactionID);
+            toReturn.put("transactionID", this.id);
             toReturn.put("type", this.type.name());
             toReturn.put("amound", this.amound);
             toReturn.put("timestamp", this.timestamp);

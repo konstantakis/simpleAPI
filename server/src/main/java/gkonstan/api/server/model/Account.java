@@ -7,21 +7,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Account {
-    private final String accountId;
+public class Account extends Model{
     private final String ownerId;
     private Double balance;
     private List<String> transactions;
 
     public Account(String accountId, String ownerId, Double balance) {
-        this.accountId = accountId;
+        super(accountId);
         this.ownerId = ownerId;
         this.balance = balance;
         this.transactions = new ArrayList<>();
-    }
-
-    public String getAccountId() {
-        return accountId;
     }
 
     public String getOwnerId() {
@@ -73,13 +68,13 @@ public class Account {
         Account c = (Account) o; 
           
         // Compare the data members and return accordingly  
-        return this.accountId.equals(c.accountId); 
+        return this.id.equals(c.id); 
     }
 
     public JSONObject toJSON(){
         JSONObject toReturn = new JSONObject();
         try {
-            toReturn.put("accountId", this.accountId);
+            toReturn.put("accountId", this.id);
             toReturn.put("ownerId", this.ownerId);
             toReturn.put("balance", this.balance);
 

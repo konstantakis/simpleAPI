@@ -20,7 +20,7 @@ public class Withdraw extends Transaction {
         JSONObject toReturn = new JSONObject();
         try {
             toReturn.put("accountId", this.accountId);
-            toReturn.put("transactionID", this.transactionID);
+            toReturn.put("transactionID", this.id);
             toReturn.put("type", this.type.name());
             toReturn.put("amound", this.amound);
             toReturn.put("timestamp", this.timestamp);
