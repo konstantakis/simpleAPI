@@ -2,7 +2,6 @@ package gkonstan.api.server.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +13,7 @@ public class Customer {
     private String name;
     private String surname;
     private Double totalBalance;
-    private List<Account> accounts;
-    private List<Transaction> transactions;
+    private List<Integer> accounts;
 
     public Customer(int customerId, String name, String surname, Double totalBalance) {
         this.customerId = customerId;
@@ -23,7 +21,6 @@ public class Customer {
         this.surname = surname;
         this.totalBalance = totalBalance;
         this.accounts = new ArrayList<>();
-        this.transactions = new ArrayList<>();
     }
 
     public int getCustomerId() {
@@ -62,30 +59,18 @@ public class Customer {
         this.totalBalance = this.totalBalance - amound;
     }
 
-    public List<Account> getAccounts() {
+    public List<Integer> getAccounts() {
         return accounts;
     }
 
-    public void addAccount(Account account) {
-        this.accounts.add(account);
+    public void addAccount(int accountId) {
+        this.accounts.add(accountId);
     }
 
-    public void removeAccount(Account account) {
-        this.accounts.remove(account);
+    public void removeAccount(int accountId) {
+        this.accounts.remove(accountId);
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void addTransactions(Transaction transaction) {
-        this.transactions.add(transaction);
-    }
-    
-    public void removeTransactions(Transaction transaction) {
-        this.transactions.remove(transaction);
-    }
-    
     @Override
     public boolean equals(Object o) { 
   
@@ -114,13 +99,10 @@ public class Customer {
             toReturn.put("surname", this.surname);
             toReturn.put("totalBalance", this.totalBalance);
 
-            JSONArray accountsJSON = new JSONArray(
-                accounts.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
-            JSONArray transactionsJSON = new JSONArray(
-                transactions.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
+            JSONArray accountsJSON = new JSONArray(accounts);
+            
             
             toReturn.put("accounts", accountsJSON);
-            toReturn.put("transactions", transactionsJSON);
 
         } catch (JSONException e) {
             toReturn = null;

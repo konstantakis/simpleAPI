@@ -1,5 +1,9 @@
 package gkonstan.api.server.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,11 +11,13 @@ public class Account {
     private final int accountId;
     private final int ownerId;
     private Double balance;
+    private List<Integer> transactions;
 
     public Account(int accountId, int ownerId, Double balance) {
         this.accountId = accountId;
         this.ownerId = ownerId;
         this.balance = balance;
+        this.transactions = new ArrayList<>();
     }
 
     public int getAccountId() {
@@ -37,7 +43,19 @@ public class Account {
     public void decreaseBalance(Double amound) {
         this.balance = this.balance - amound;
     }
+    
+    public List<Integer> getTransactions() {
+        return transactions;
+    }
 
+    public void addTransactions(int transactionId) {
+        this.transactions.add(transactionId);
+    }
+    
+    public void removeTransactions(int transactionId) {
+        this.transactions.remove(transactionId);
+    }
+    
     @Override
     public boolean equals(Object o) { 
   
@@ -64,6 +82,10 @@ public class Account {
             toReturn.put("accountId", this.accountId);
             toReturn.put("ownerId", this.ownerId);
             toReturn.put("balance", this.balance);
+
+            JSONArray transactionsJSON = new JSONArray(transactions);
+            toReturn.put("transactions", transactionsJSON);
+
         } catch (JSONException e) {
             toReturn = null;
             // TODO Auto-generated catch block
