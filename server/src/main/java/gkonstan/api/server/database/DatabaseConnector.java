@@ -32,7 +32,7 @@ public abstract class DatabaseConnector<T extends Model> {
 
     public T search(String id){
         for (T x : table) {
-            if (x.getId() == id) {
+            if (x.getId().equals(id)) {
                 return x;
             }
         }
