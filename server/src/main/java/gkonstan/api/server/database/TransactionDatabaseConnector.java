@@ -1,11 +1,5 @@
 package gkonstan.api.server.database;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.json.JSONArray;
-
 import gkonstan.api.server.model.Transaction;
 import gkonstan.api.server.model.TransactionType;
 
