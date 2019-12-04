@@ -8,8 +8,8 @@ public class Transfer extends Transaction {
     private final int fromAccountId;
     private final int toAccountId;
 
-    public Transfer(int transactionID, double amound, int fromAccountId, int toAccountId) {
-        super(transactionID, "Transfer", amound);
+    public Transfer(int transactionID, double amound, int fromAccountId, int toAccountId, int timestamp) {
+        super(transactionID, "Transfer", amound, timestamp);
         this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
     }
@@ -30,6 +30,7 @@ public class Transfer extends Transaction {
             toReturn.put("transactionID", this.transactionID);
             toReturn.put("type", this.type);
             toReturn.put("amound", this.amound);
+            toReturn.put("timestamp", this.timestamp);
         } catch (JSONException e) {
             toReturn = null;
             // TODO Auto-generated catch block

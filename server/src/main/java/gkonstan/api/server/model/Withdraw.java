@@ -7,8 +7,8 @@ public class Withdraw extends Transaction {
 
     private final int accountId;
 
-    public Withdraw(int transactionID, double amound, int accountId) {
-        super(transactionID, "Withdraw", amound);
+    public Withdraw(int transactionID, double amound, int accountId, int timestamp) {
+        super(transactionID, "Withdraw", amound, timestamp);
         this.accountId = accountId;
     }
 
@@ -23,6 +23,7 @@ public class Withdraw extends Transaction {
             toReturn.put("transactionID", this.transactionID);
             toReturn.put("type", this.type);
             toReturn.put("amound", this.amound);
+            toReturn.put("timestamp", this.timestamp);
         } catch (JSONException e) {
             toReturn = null;
             // TODO Auto-generated catch block

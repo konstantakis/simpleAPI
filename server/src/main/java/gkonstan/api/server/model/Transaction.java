@@ -6,11 +6,13 @@ public abstract class Transaction {
     protected final int transactionID;
     protected final String type;  // Withdraw, Deposit, Transfer 
     protected final double amound;
+    protected final int timestamp;
 
-    protected Transaction(int transactionID, String type, double amound) {
+    protected Transaction(int transactionID, String type, double amound, int timestamp) {
         this.transactionID = transactionID;
         this.type = type;
         this.amound = amound;
+        this.timestamp = timestamp;
     }
 
     public int getTransactionID() {

@@ -7,8 +7,8 @@ public class Deposit extends Transaction {
     
     private final int accountId;
 
-    public Deposit(int transactionID, double amound, int accountId) {
-        super(transactionID, "Deposit", amound);
+    public Deposit(int transactionID, double amound, int accountId, int timestamp) {
+        super(transactionID, "Deposit", amound, timestamp);
         this.accountId = accountId;
     }
 
@@ -23,6 +23,7 @@ public class Deposit extends Transaction {
             toReturn.put("transactionID", this.transactionID);
             toReturn.put("type", this.type);
             toReturn.put("amound", this.amound);
+            toReturn.put("timestamp", this.timestamp);
         } catch (JSONException e) {
             toReturn = null;
             // TODO Auto-generated catch block
