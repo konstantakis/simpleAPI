@@ -7,10 +7,18 @@ import java.util.stream.Collectors;
 import gkonstan.api.server.model.Account;
 
 public class AccountDatabaseConnector {
+    private static AccountDatabaseConnector instance;
     private List<Account> accountDB;
 
-    public AccountDatabaseConnector() {
+    private AccountDatabaseConnector() {
         accountDB = new ArrayList<>();
+    }
+    
+    public static AccountDatabaseConnector getInstance(){
+        if(instance == null){
+            instance = new AccountDatabaseConnector();
+        }
+        return instance;
     }
 
     public boolean addAccount(Account account) {

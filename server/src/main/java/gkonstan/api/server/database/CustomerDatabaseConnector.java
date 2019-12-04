@@ -7,10 +7,18 @@ import java.util.stream.Collectors;
 import gkonstan.api.server.model.Customer;
 
 public class CustomerDatabaseConnector {
+    private static CustomerDatabaseConnector instance;
     private List<Customer> customerDB;
 
-    public CustomerDatabaseConnector() {
+    private CustomerDatabaseConnector() {
         customerDB = new ArrayList<>();
+    }
+
+    public static CustomerDatabaseConnector getInstance(){
+        if(instance == null){
+            instance = new CustomerDatabaseConnector();
+        }
+        return instance;
     }
 
     public boolean addCustomer(Customer customer) {

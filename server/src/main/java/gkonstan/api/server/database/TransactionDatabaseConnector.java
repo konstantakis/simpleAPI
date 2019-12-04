@@ -7,10 +7,18 @@ import java.util.stream.Collectors;
 import gkonstan.api.server.model.Transaction;
 
 public class TransactionDatabaseConnector {
+    private static TransactionDatabaseConnector instance;
     private List<Transaction> transactionDB;
 
-    public TransactionDatabaseConnector() {
+    private TransactionDatabaseConnector() {
         transactionDB = new ArrayList<>();
+    }
+
+    public static TransactionDatabaseConnector getInstance(){
+        if(instance == null){
+            instance = new TransactionDatabaseConnector();
+        }
+        return instance;
     }
 
     public boolean addTransaction(Transaction transaction) {
