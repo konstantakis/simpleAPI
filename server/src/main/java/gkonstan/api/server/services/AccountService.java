@@ -18,11 +18,6 @@ import gkonstan.api.server.model.Account;
 @RestController
 public class AccountService {
 
-   /*@RequestMapping(value = "/account")
-   public ResponseEntity<Object> getTest() {
-      return new ResponseEntity<>(testRepo, HttpStatus.OK);
-   }*/
-
    @RequestMapping(value = "/account", method = RequestMethod.POST)
    public ResponseEntity<Object> createTest(@RequestParam String customerId, @RequestParam double initialCredit) {
       //testRepo.put(key, value);
