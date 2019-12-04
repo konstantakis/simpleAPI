@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.JSONArray;
+
 import gkonstan.api.server.model.Transaction;
 import gkonstan.api.server.model.TransactionType;
 
@@ -79,5 +81,10 @@ public class TransactionDatabaseConnector {
 
     public List<Transaction> getAllTransactionsByType(TransactionType type) {
         return transactionDB.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
+    }
+
+    public JSONArray toJSON() {
+        return new JSONArray(
+                transactionDB.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
     }
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.JSONArray;
+
 import gkonstan.api.server.model.Customer;
 
 public class CustomerDatabaseConnector {
@@ -59,5 +61,10 @@ public class CustomerDatabaseConnector {
 
     public List<Customer> getAllCustomers() {
         return customerDB;
+    }
+
+    public JSONArray toJSON() {
+        return new JSONArray(
+                customerDB.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
     }
 }
