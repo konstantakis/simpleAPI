@@ -25,6 +25,11 @@ public abstract class DatabaseConnector<T extends Model> {
         return true;
     }
 
+    public void edit(T x){
+        remove(x.getId());
+        add(x);
+    }
+
     public T search(String id){
         for (T x : table) {
             if (x.getId() == id) {
@@ -38,8 +43,8 @@ public abstract class DatabaseConnector<T extends Model> {
         return table.stream().filter(x -> idList.contains(x.getId())).collect(Collectors.toList());
     }
 
-    public T remove(String accountId) {
-        T toRemove = search(accountId);
+    public T remove(String id) {
+        T toRemove = search(id);
         if (toRemove == null) {
             return null;
         }
