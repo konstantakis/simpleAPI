@@ -12,7 +12,7 @@ public class DepositController {
       Deposit toReturn = new Deposit(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.DEPOSIT), amound, account.getId(), 13);
       TransactionDatabaseConnector.getInstance().add(toReturn);
       
-      AccountController.increaseBalance(account.getId(), amound);
+      AccountController.addTransaction(account.getId(), toReturn.getId(), amound);
 
       CustomerController.increaseTotalBalance(account.getOwnerId(), amound);
 

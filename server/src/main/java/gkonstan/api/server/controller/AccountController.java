@@ -17,6 +17,12 @@ public class AccountController {
       AccountDatabaseConnector.getInstance().edit(a);
    }
 
+   public static void addTransaction(String accountId, String transactionId, Double amound) {
+      Account a = AccountDatabaseConnector.getInstance().search(accountId);
+      a.increaseBalance(amound);
+      a.addTransaction(transactionId);
+      AccountDatabaseConnector.getInstance().edit(a);
+   }
    public static Account createAndAddNewAccount(Customer customer) {
       Account toReturn = new Account(AccountDatabaseConnector.getInstance().getNextId(), customer.getId(), 0.0);
       AccountDatabaseConnector.getInstance().add(toReturn);
