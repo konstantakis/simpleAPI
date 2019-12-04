@@ -9,11 +9,11 @@ import org.json.JSONObject;
 
 public class Account {
     private final String accountId;
-    private final int ownerId;
+    private final String ownerId;
     private Double balance;
     private List<Integer> transactions;
 
-    public Account(String accountId, int ownerId, Double balance) {
+    public Account(String accountId, String ownerId, Double balance) {
         this.accountId = accountId;
         this.ownerId = ownerId;
         this.balance = balance;
@@ -24,7 +24,7 @@ public class Account {
         return accountId;
     }
 
-    public int getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
