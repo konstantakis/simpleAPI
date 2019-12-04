@@ -11,7 +11,7 @@ public class Account {
     private final String accountId;
     private final String ownerId;
     private Double balance;
-    private List<Integer> transactions;
+    private List<String> transactions;
 
     public Account(String accountId, String ownerId, Double balance) {
         this.accountId = accountId;
@@ -44,15 +44,15 @@ public class Account {
         this.balance = this.balance - amound;
     }
     
-    public List<Integer> getTransactions() {
+    public List<String> getTransactions() {
         return transactions;
     }
 
-    public void addTransactions(int transactionId) {
+    public void addTransactions(String transactionId) {
         this.transactions.add(transactionId);
     }
     
-    public void removeTransactions(int transactionId) {
+    public void removeTransactions(String transactionId) {
         this.transactions.remove(transactionId);
     }
     

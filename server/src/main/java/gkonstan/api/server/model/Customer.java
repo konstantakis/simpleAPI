@@ -13,7 +13,7 @@ public class Customer {
     private String name;
     private String surname;
     private Double totalBalance;
-    private List<Integer> accounts;
+    private List<String> accounts;
 
     public Customer(String customerId, String name, String surname, Double totalBalance) {
         this.customerId = customerId;
@@ -59,15 +59,15 @@ public class Customer {
         this.totalBalance = this.totalBalance - amound;
     }
 
-    public List<Integer> getAccounts() {
+    public List<String> getAccounts() {
         return accounts;
     }
 
-    public void addAccount(int accountId) {
+    public void addAccount(String accountId) {
         this.accounts.add(accountId);
     }
 
-    public void removeAccount(int accountId) {
+    public void removeAccount(String accountId) {
         this.accounts.remove(accountId);
     }
 
