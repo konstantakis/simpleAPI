@@ -39,7 +39,7 @@ public abstract class DatabaseConnector<T extends Model> {
         return null;
     }
 
-    public List<T> searchMultipleTransactions(List<String> idList) {
+    public List<T> searchMultiple(List<String> idList) {
         return table.stream().filter(x -> idList.contains(x.getId())).collect(Collectors.toList());
     }
 
