@@ -9,14 +9,11 @@ import org.json.JSONArray;
 import gkonstan.api.server.model.Transaction;
 import gkonstan.api.server.model.TransactionType;
 
-public class TransactionDatabaseConnector {
+public class TransactionDatabaseConnector extends DatabaseConnector<Transaction>{
     private static TransactionDatabaseConnector instance;
-    private List<Transaction> transactionDB;
-    private int lastId;
 
     private TransactionDatabaseConnector() {
-        transactionDB = new ArrayList<>();
-        lastId = 0;
+        super();
     }
 
     public static TransactionDatabaseConnector getInstance(){
@@ -43,48 +40,5 @@ public class TransactionDatabaseConnector {
                 return null;
         }
         return idPrefix + lastId++;
-    }
-
-    public boolean addTransaction(Transaction transaction) {
-        if (searchTransaction(transaction.getTransactionID()) != null) {
-            return false;
-        }
-        transactionDB.add(transaction);
-        return true;
-    }
-    
-    public Transaction searchTransaction(String transactionId) {
-        for (Transaction x : transactionDB) {
-            if (x.getTransactionID() == transactionId) {
-                return x;
-            }
-        }
-        return null;
-    }
-
-    public List<Transaction> searchMultipleTransactions(List<String> idList) {
-         return transactionDB.stream().filter(x -> idList.contains(x.getTransactionID())).collect(Collectors.toList());
-    }
-
-    public Transaction removeTransaction(String transactionId) {
-        Transaction toRemove = searchTransaction(transactionId);
-        if (toRemove == null) {
-            return null;
-        }
-        transactionDB.remove(toRemove);
-        return toRemove;
-    }
-
-    public List<Transaction> getAllTransactions(){
-        return transactionDB;
-    }
-
-    public List<Transaction> getAllTransactionsByType(TransactionType type) {
-        return transactionDB.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
-    }
-
-    public JSONArray toJSON() {
-        return new JSONArray(
-                transactionDB.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
     }
 }
