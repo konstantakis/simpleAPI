@@ -9,9 +9,11 @@ import gkonstan.api.server.model.Customer;
 public class CustomerDatabaseConnector {
     private static CustomerDatabaseConnector instance;
     private List<Customer> customerDB;
+    private int lastId;
 
     private CustomerDatabaseConnector() {
         customerDB = new ArrayList<>();
+        lastId = 0;
     }
 
     public static CustomerDatabaseConnector getInstance(){
@@ -22,7 +24,7 @@ public class CustomerDatabaseConnector {
     }
 
     public String getNextId(){
-        return "cus" + customerDB.size();
+        return "cus" + lastId++;
     }
 
     public boolean addCustomer(Customer customer) {

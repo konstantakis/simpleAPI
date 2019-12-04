@@ -10,9 +10,11 @@ import gkonstan.api.server.model.TransactionType;
 public class TransactionDatabaseConnector {
     private static TransactionDatabaseConnector instance;
     private List<Transaction> transactionDB;
+    private int lastId;
 
     private TransactionDatabaseConnector() {
         transactionDB = new ArrayList<>();
+        lastId = 0;
     }
 
     public static TransactionDatabaseConnector getInstance(){
@@ -38,7 +40,7 @@ public class TransactionDatabaseConnector {
             default:
                 return null;
         }
-        return idPrefix + transactionDB.size();
+        return idPrefix + lastId++;
     }
 
     public boolean addTransaction(Transaction transaction) {

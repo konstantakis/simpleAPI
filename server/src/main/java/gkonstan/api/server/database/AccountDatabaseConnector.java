@@ -9,9 +9,11 @@ import gkonstan.api.server.model.Account;
 public class AccountDatabaseConnector {
     private static AccountDatabaseConnector instance;
     private List<Account> accountDB;
+    private int lastId;
 
     private AccountDatabaseConnector() {
         accountDB = new ArrayList<>();
+        lastId = 0;
     }
     
     public static AccountDatabaseConnector getInstance(){
@@ -22,7 +24,7 @@ public class AccountDatabaseConnector {
     }
 
     public String getNextId(){
-        return "acc" + accountDB.size();
+        return "acc" + lastId++;
     }
 
     public boolean addAccount(Account account) {
