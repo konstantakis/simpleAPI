@@ -21,6 +21,10 @@ public class CustomerDatabaseConnector {
         return instance;
     }
 
+    public String getNextId(){
+        return "cus" + customerDB.size();
+    }
+
     public boolean addCustomer(Customer customer) {
         if (searchCustomer(customer.getCustomerId()) != null) {
             return false;

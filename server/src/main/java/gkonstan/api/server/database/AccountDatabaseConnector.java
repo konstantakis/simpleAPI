@@ -21,6 +21,10 @@ public class AccountDatabaseConnector {
         return instance;
     }
 
+    public String getNextId(){
+        return "acc" + accountDB.size();
+    }
+
     public boolean addAccount(Account account) {
         if (searchAccount(account.getAccountId()) != null) {
             return false;

@@ -21,6 +21,26 @@ public class TransactionDatabaseConnector {
         return instance;
     }
 
+    /* Type must be equal to one of: Deposit, Withdraw, Transfer */
+    public String getNextId(String Type){
+        String idPrefix;
+        switch (Type) {
+            case "Deposit":
+                idPrefix = "dep";
+                break;
+            case "Withdraw":
+                idPrefix = "wit";
+                break;
+            case "Transfer":
+                idPrefix = "tra";
+                break;
+        
+            default:
+                return null;
+        }
+        return idPrefix + transactionDB.size();
+    }
+
     public boolean addTransaction(Transaction transaction) {
         if (searchTransaction(transaction.getTransactionID()) != null) {
             return false;
