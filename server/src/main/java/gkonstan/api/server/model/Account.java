@@ -43,11 +43,11 @@ public class Account extends Model{
         return transactions;
     }
 
-    public void addTransactions(String transactionId) {
+    public void addTransaction(String transactionId) {
         this.transactions.add(transactionId);
     }
     
-    public void removeTransactions(String transactionId) {
+    public void removeTransaction(String transactionId) {
         this.transactions.remove(transactionId);
     }
     
