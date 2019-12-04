@@ -3,19 +3,19 @@ package gkonstan.api.server.model;
 import org.json.JSONObject;
 
 public abstract class Transaction {
-    protected final int transactionID;
+    protected final String transactionID;
     protected final String type;  // Withdraw, Deposit, Transfer 
     protected final double amound;
     protected final int timestamp;
 
-    protected Transaction(int transactionID, String type, double amound, int timestamp) {
+    protected Transaction(String transactionID, String type, double amound, int timestamp) {
         this.transactionID = transactionID;
         this.type = type;
         this.amound = amound;
         this.timestamp = timestamp;
     }
 
-    public int getTransactionID() {
+    public String getTransactionID() {
         return transactionID;
     }
 
@@ -50,6 +50,6 @@ public abstract class Transaction {
         Transaction c = (Transaction) o; 
           
         // Compare the data members and return accordingly  
-        return Double.compare(this.transactionID, c.transactionID) == 0; 
+        return this.transactionID.equals(c.transactionID); 
     }
 }

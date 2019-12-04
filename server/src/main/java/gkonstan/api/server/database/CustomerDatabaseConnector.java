@@ -29,7 +29,7 @@ public class CustomerDatabaseConnector {
         return true;
     }
     
-    public Customer searchCustomer(int customerId) {
+    public Customer searchCustomer(String customerId) {
         for (Customer x : customerDB) {
             if (x.getCustomerId() == customerId) {
                 return x;
@@ -38,11 +38,11 @@ public class CustomerDatabaseConnector {
         return null;
     }
 
-    public List<Customer> searchMultipleTransactions(List<Integer> idList) {
+    public List<Customer> searchMultipleTransactions(List<String> idList) {
         return customerDB.stream().filter(x -> idList.contains(x.getCustomerId())).collect(Collectors.toList());
     }
 
-    public Customer removeCustomer(int customerId) {
+    public Customer removeCustomer(String customerId) {
         Customer toRemove = searchCustomer(customerId);
         if (toRemove == null) {
             return null;

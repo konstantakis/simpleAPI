@@ -9,13 +9,13 @@ import org.json.JSONObject;
 
 
 public class Customer {
-    private final int customerId;
+    private final String customerId;
     private String name;
     private String surname;
     private Double totalBalance;
     private List<Integer> accounts;
 
-    public Customer(int customerId, String name, String surname, Double totalBalance) {
+    public Customer(String customerId, String name, String surname, Double totalBalance) {
         this.customerId = customerId;
         this.name = name;
         this.surname = surname;
@@ -23,7 +23,7 @@ public class Customer {
         this.accounts = new ArrayList<>();
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
@@ -88,7 +88,7 @@ public class Customer {
         Customer c = (Customer) o; 
           
         // Compare the data members and return accordingly  
-        return Double.compare(this.customerId, c.customerId) == 0; 
+        return this.customerId.equals(c.customerId); 
     }
 
     public JSONObject toJSON(){

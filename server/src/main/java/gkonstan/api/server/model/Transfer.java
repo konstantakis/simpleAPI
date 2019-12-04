@@ -5,20 +5,20 @@ import org.json.JSONObject;
 
 public class Transfer extends Transaction {
     
-    private final int fromAccountId;
-    private final int toAccountId;
+    private final String fromAccountId;
+    private final String toAccountId;
 
-    public Transfer(int transactionID, double amound, int fromAccountId, int toAccountId, int timestamp) {
+    public Transfer(String transactionID, double amound, String fromAccountId, String toAccountId, int timestamp) {
         super(transactionID, "Transfer", amound, timestamp);
         this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
     }
 
-    public int getFromAccountId() {
+    public String getFromAccountId() {
         return fromAccountId;
     }
 
-    public int getToAccountId() {
+    public String getToAccountId() {
         return toAccountId;
     }
 

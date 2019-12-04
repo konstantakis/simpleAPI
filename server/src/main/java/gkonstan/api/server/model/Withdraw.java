@@ -5,14 +5,14 @@ import org.json.JSONObject;
 
 public class Withdraw extends Transaction {
 
-    private final int accountId;
+    private final String accountId;
 
-    public Withdraw(int transactionID, double amound, int accountId, int timestamp) {
+    public Withdraw(String transactionID, double amound, String accountId, int timestamp) {
         super(transactionID, "Withdraw", amound, timestamp);
         this.accountId = accountId;
     }
 
-    public int getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 

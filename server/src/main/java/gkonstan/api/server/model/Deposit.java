@@ -5,14 +5,14 @@ import org.json.JSONObject;
 
 public class Deposit extends Transaction {
     
-    private final int accountId;
+    private final String accountId;
 
-    public Deposit(int transactionID, double amound, int accountId, int timestamp) {
+    public Deposit(String transactionID, double amound, String accountId, int timestamp) {
         super(transactionID, "Deposit", amound, timestamp);
         this.accountId = accountId;
     }
 
-    public int getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 

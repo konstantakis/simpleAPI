@@ -8,19 +8,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Account {
-    private final int accountId;
+    private final String accountId;
     private final int ownerId;
     private Double balance;
     private List<Integer> transactions;
 
-    public Account(int accountId, int ownerId, Double balance) {
+    public Account(String accountId, int ownerId, Double balance) {
         this.accountId = accountId;
         this.ownerId = ownerId;
         this.balance = balance;
         this.transactions = new ArrayList<>();
     }
 
-    public int getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
@@ -73,7 +73,7 @@ public class Account {
         Account c = (Account) o; 
           
         // Compare the data members and return accordingly  
-        return Double.compare(this.accountId, c.accountId) == 0; 
+        return this.accountId.equals(c.accountId); 
     }
 
     public JSONObject toJSON(){

@@ -29,7 +29,7 @@ public class TransactionDatabaseConnector {
         return true;
     }
     
-    public Transaction searchTransaction(int transactionId) {
+    public Transaction searchTransaction(String transactionId) {
         for (Transaction x : transactionDB) {
             if (x.getTransactionID() == transactionId) {
                 return x;
@@ -38,11 +38,11 @@ public class TransactionDatabaseConnector {
         return null;
     }
 
-    public List<Transaction> searchMultipleTransactions(List<Integer> idList) {
+    public List<Transaction> searchMultipleTransactions(List<String> idList) {
          return transactionDB.stream().filter(x -> idList.contains(x.getTransactionID())).collect(Collectors.toList());
     }
 
-    public Transaction removeTransaction(int transactionId) {
+    public Transaction removeTransaction(String transactionId) {
         Transaction toRemove = searchTransaction(transactionId);
         if (toRemove == null) {
             return null;

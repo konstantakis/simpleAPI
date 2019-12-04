@@ -29,7 +29,7 @@ public class AccountDatabaseConnector {
         return true;
     }
     
-    public Account searchAccount(int accountId) {
+    public Account searchAccount(String accountId) {
         for (Account x : accountDB) {
             if (x.getAccountId() == accountId) {
                 return x;
@@ -38,11 +38,11 @@ public class AccountDatabaseConnector {
         return null;
     }
 
-    public List<Account> searchMultipleTransactions(List<Integer> idList) {
+    public List<Account> searchMultipleTransactions(List<String> idList) {
         return accountDB.stream().filter(x -> idList.contains(x.getAccountId())).collect(Collectors.toList());
     }
 
-    public Account removeAccount(int accountId) {
+    public Account removeAccount(String accountId) {
         Account toRemove = searchAccount(accountId);
         if (toRemove == null) {
             return null;
