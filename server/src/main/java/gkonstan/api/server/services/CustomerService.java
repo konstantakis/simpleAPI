@@ -16,14 +16,13 @@ import gkonstan.api.server.model.Customer;
 public class CustomerService {
 
    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
-   public ResponseEntity<Object> createTest(@PathVariable String customerId) {
-      //testRepo.put(key, value);
+   public ResponseEntity<Object> getCustomerWithId(@PathVariable String customerId) {
 
-        Customer customer = CustomerDatabaseConnector.getInstance().search(customerId);
-        if(customer == null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
+      Customer customer = CustomerDatabaseConnector.getInstance().search(customerId);
+      if(customer == null){
+         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      }
 
-        return new ResponseEntity<>( CustomerController.getCustomerJSON(customer).toString(), HttpStatus.CREATED);
+      return new ResponseEntity<>( CustomerController.getCustomerJSON(customer).toString(), HttpStatus.OK);
    }
 }
