@@ -63,13 +63,56 @@ public class InitialData {
         account.decreaseBalance(transaction.getAmound());
         customer.decreaseTotalBalance(transaction.getAmound());
 
+        AccountDatabaseConnector.getInstance().add(account);
+        TransactionDatabaseConnector.getInstance().add(transaction);
+        
+        transaction = new Withdraw(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.WITHDRAW), 10.8, accountId5, 20);
+        account = AccountDatabaseConnector.getInstance().search(accountId5);
+        customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
+        account.addTransaction(transaction.getId());
+        account.decreaseBalance(transaction.getAmound());
+        customer.decreaseTotalBalance(transaction.getAmound());
+        AccountDatabaseConnector.getInstance().add(account);
+        TransactionDatabaseConnector.getInstance().add(transaction);
 
-        /*System.out.println("---------------------------- Customers ---------------------------");
+        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANFER), 30.5, accountId5, accountId1, 22);
+        account = AccountDatabaseConnector.getInstance().search(accountId5);
+        customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
+        account.addTransaction(transaction.getId());
+        account.decreaseBalance(transaction.getAmound());
+        customer.decreaseTotalBalance(transaction.getAmound());
+
+        account = AccountDatabaseConnector.getInstance().search(accountId1);
+        customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
+        account.addTransaction(transaction.getId());
+        account.increaseBalance(transaction.getAmound());
+        customer.increaseTotalBalance(transaction.getAmound());
+
+        TransactionDatabaseConnector.getInstance().add(transaction);
+
+        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANFER), 15.0, accountId4, accountId5, 28);
+        account = AccountDatabaseConnector.getInstance().search(accountId4);
+        customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
+        account.addTransaction(transaction.getId());
+        account.decreaseBalance(transaction.getAmound());
+        customer.decreaseTotalBalance(transaction.getAmound());
+
+        account = AccountDatabaseConnector.getInstance().search(accountId5);
+        customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
+        account.addTransaction(transaction.getId());
+        account.increaseBalance(transaction.getAmound());
+        customer.increaseTotalBalance(transaction.getAmound());
+        
+
+        
+        TransactionDatabaseConnector.getInstance().add(transaction);
+        
+        System.out.println("---------------------------- Customers ---------------------------");
         System.out.println(CustomerDatabaseConnector.getInstance().toJSON().toString());
         System.out.println("---------------------------- Accounts ----------------------------");
         System.out.println(AccountDatabaseConnector.getInstance().toJSON().toString());
         System.out.println("-------------------------- Transactions --------------------------");
-        System.out.println(TransactionDatabaseConnector.getInstance().toJSON().toString());*/
+        System.out.println(TransactionDatabaseConnector.getInstance().toJSON().toString());
     }
 
 } 
