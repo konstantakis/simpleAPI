@@ -12,6 +12,7 @@ import gkonstan.api.server.database.CustomerDatabaseConnector;
 import gkonstan.api.server.database.TransactionDatabaseConnector;
 import gkonstan.api.server.model.Account;
 import gkonstan.api.server.model.Customer;
+import gkonstan.api.server.model.Transaction;
 
 public class CustomerController {
 
@@ -36,22 +37,24 @@ public class CustomerController {
     }
 
     public static JSONObject getCustomerJSON(Customer customer) {
-        List<Account> accounts = AccountDatabaseConnector.getInstance().searchMultiple(customer.getAccounts());
-
-        JSONArray y = new JSONArray(accounts.stream().map(x -> {
-
-            try {
-                return x.toJSON().put("transactions",
-                        TransactionDatabaseConnector.getInstance().searchMultiple(x.getTransactions()));
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return null;
-            }
-        }
-        ).collect(Collectors.toList()));
-
         try {
+            List<Account> accounts = AccountDatabaseConnector.getInstance().searchMultiple(customer.getAccounts());
+
+            JSONArray y = new JSONArray(accounts.stream().map(x -> {
+                List<Transaction> transactions = TransactionDatabaseConnector.getInstance().searchMultiple(x.getTransactions());
+                
+                
+                JSONArray z = new JSONArray(transactions.stream().map(g -> g.toJSON()).collect(Collectors.toList()));
+                try {
+                    return x.toJSON().put("transactions", z);
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return null;
+                }
+            
+            }).collect(Collectors.toList()));
+
             return customer.toJSON().put("accounts", y);
         } catch (JSONException e) {
             // TODO Auto-generated catch block
