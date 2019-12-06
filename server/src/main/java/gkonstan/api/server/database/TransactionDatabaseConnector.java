@@ -26,7 +26,7 @@ public class TransactionDatabaseConnector extends DatabaseConnector<Transaction>
             case WITHDRAW:
                 idPrefix = "wit";
                 break;
-            case TRANFER:
+            case TRANSFER:
                 idPrefix = "tra";
                 break;
         

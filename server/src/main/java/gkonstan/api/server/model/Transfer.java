@@ -9,7 +9,7 @@ public class Transfer extends Transaction {
     private final String toAccountId;
 
     public Transfer(String transactionID, double amound, String fromAccountId, String toAccountId, int timestamp) {
-        super(transactionID, TransactionType.TRANFER, amound, timestamp);
+        super(transactionID, TransactionType.TRANSFER, amound, timestamp);
         this.fromAccountId = fromAccountId;
         this.toAccountId = toAccountId;
     }

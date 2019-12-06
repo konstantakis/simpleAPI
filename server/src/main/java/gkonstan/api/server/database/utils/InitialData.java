@@ -75,7 +75,7 @@ public class InitialData {
         AccountDatabaseConnector.getInstance().add(account);
         TransactionDatabaseConnector.getInstance().add(transaction);
 
-        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANFER), 30.5, accountId5, accountId1, 22);
+        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANSFER), 30.5, accountId5, accountId1, 22);
         account = AccountDatabaseConnector.getInstance().search(accountId5);
         customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
         account.addTransaction(transaction.getId());
@@ -90,7 +90,7 @@ public class InitialData {
 
         TransactionDatabaseConnector.getInstance().add(transaction);
 
-        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANFER), 15.0, accountId4, accountId5, 28);
+        transaction = new Transfer(TransactionDatabaseConnector.getInstance().getNextId(TransactionType.TRANSFER), 15.0, accountId4, accountId5, 28);
         account = AccountDatabaseConnector.getInstance().search(accountId4);
         customer = CustomerDatabaseConnector.getInstance().search(account.getOwnerId());
         account.addTransaction(transaction.getId());
