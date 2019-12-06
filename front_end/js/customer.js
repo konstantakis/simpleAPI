@@ -7,13 +7,14 @@ $(document).ready(function(){
     $.ajax({
         url: serviceURL + "customer/" + customerId,
         type: 'GET',
-        success: fillData
+        success: fillData,
+        error : getError
+
     });
 });
 
 function fillData(res){
     var json = JSON.parse(res); 
-    console.log(json)
     $('#customerID').text(json.customerId);
     $('#fullname').text(json.name + " " + json.surname);
     $('#totalBalance').text(json.totalBalance);
@@ -76,12 +77,11 @@ function fillData(res){
     
 }
 
-/** TODO
- * remove init values
- * do details
- * on error redirect
- * amound with prefix - or +
- * 
- *  
- * */  
+function getError(xhr){
+    if(xhr.status === 404){
+        $('#error_message').text("Custome with id: " + getUrlParameter('id') + " , not found");
+    }else{
+        console.log(xhr);
+    }
+}
 
