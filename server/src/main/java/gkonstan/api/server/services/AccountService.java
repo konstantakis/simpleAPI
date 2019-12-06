@@ -22,12 +22,12 @@ public class AccountService {
    public ResponseEntity<Object> createTest(@RequestParam String customerId, @RequestParam double initialCredit) {
       //testRepo.put(key, value);
       if(initialCredit < 0.0){
-         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+         return new ResponseEntity<>("Wrong initial credit", HttpStatus.BAD_REQUEST);
       }
       
       Customer customer = CustomerDatabaseConnector.getInstance().search(customerId);
       if(customer == null){
-         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+         return new ResponseEntity<>("Customer id not found", HttpStatus.FORBIDDEN);
       }
       
       /* create new account */

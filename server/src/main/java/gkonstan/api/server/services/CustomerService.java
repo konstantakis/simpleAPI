@@ -20,7 +20,7 @@ public class CustomerService {
 
       Customer customer = CustomerDatabaseConnector.getInstance().search(customerId);
       if(customer == null){
-         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+         return new ResponseEntity<>("Customer not found", HttpStatus.NOT_FOUND);
       }
 
       return new ResponseEntity<>( CustomerController.getCustomerJSON(customer).toString(), HttpStatus.OK);
