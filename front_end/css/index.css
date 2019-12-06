@@ -5,3 +5,7 @@
 #termsCheckBox{
     margin-top: 0.5rem;
 }
+
+#error_message{
+    color: red;
+}
