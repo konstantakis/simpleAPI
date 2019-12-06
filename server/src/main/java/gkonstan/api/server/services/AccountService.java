@@ -33,10 +33,14 @@ public class AccountService {
       /* create new account */
       Account newAccount = AccountController.createAndAddNewAccount(customer);
 
-      /* TODO Ideal use rediraction */
-      Deposit newDeposit = DepositController.createAndAddNewDeposit(newAccount, initialCredit);
+      if(initialCredit > 0.0){
+         /* TODO Ideal use rediraction */
+         Deposit newDeposit = DepositController.createAndAddNewDeposit(newAccount, initialCredit);
+         return new ResponseEntity<>("{\"accountId\" : \"" + newAccount.getId() + 
+            "\", \"transactionId\" : \"" + newDeposit.getId() + "\"}", HttpStatus.CREATED);
+      }
 
-      return new ResponseEntity<>("New account and transaction created, account id : " 
-         + newAccount.getId() + ", transaction id: " + newDeposit.getId(), HttpStatus.CREATED);
+      return new ResponseEntity<>("{\"accountId\" : \"" 
+         + newAccount.getId() + "\"}", HttpStatus.CREATED);
    }
 }
