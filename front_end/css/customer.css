@@ -6,3 +6,7 @@
 #customerDetails{
     margin-top: 2rem;
 }
+
+#error_message{
+    color: red;
+}

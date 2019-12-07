@@ -14,3 +14,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
