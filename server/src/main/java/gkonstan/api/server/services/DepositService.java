@@ -18,7 +18,6 @@ import gkonstan.api.server.model.Account;
 public class DepositService {
     @RequestMapping(value = "/transaction/deposit/{accountId}", method = RequestMethod.POST)
     public ResponseEntity<Object> postDeposit(@PathVariable String accountId, @RequestParam double amound) {
-      //testRepo.put(key, value);
       if(amound < 0.0){
          return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
       }
@@ -31,7 +30,8 @@ public class DepositService {
       /* create new account */
       Deposit newDeposit = DepositController.createAndAddNewDeposit(account, amound);
 
-      return new ResponseEntity<>("New deposit created, deposit id : " + newDeposit.getId(), HttpStatus.CREATED);
+      return new ResponseEntity<>("{\"depositId\" : \"" 
+         + newDeposit.getId() + "\"}", HttpStatus.CREATED);
    }
 
     
