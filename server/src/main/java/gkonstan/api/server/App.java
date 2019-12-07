@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import gkonstan.api.server.database.utils.InitialData;
-import gkonstan.api.server.model.*;
 
 @SpringBootApplication
 public class App 
