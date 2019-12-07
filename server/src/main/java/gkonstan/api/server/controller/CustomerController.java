@@ -37,29 +37,29 @@ public class CustomerController {
     }
 
     public static JSONObject getCustomerJSON(Customer customer) {
+        JSONObject jsonCustomer = customer.toJSON();
         try {
-            List<Account> accounts = AccountDatabaseConnector.getInstance().searchMultiple(customer.getAccounts());
+            JSONArray jsonCustomerAccounts = new JSONArray();
+            List<Account> customerAccounts = AccountDatabaseConnector.getInstance().searchMultiple(customer.getAccounts());
+            for(Account account : customerAccounts){
+                
+                List<Transaction> accountTransactions = TransactionDatabaseConnector.getInstance().searchMultiple(account.getTransactions());
 
-            JSONArray y = new JSONArray(accounts.stream().map(x -> {
-                List<Transaction> transactions = TransactionDatabaseConnector.getInstance().searchMultiple(x.getTransactions());
+                JSONArray jsonAccountTransactions = new JSONArray(accountTransactions.stream().map(x -> x.toJSON()).collect(Collectors.toList()));
                 
-                
-                JSONArray z = new JSONArray(transactions.stream().map(g -> g.toJSON()).collect(Collectors.toList()));
-                try {
-                    return x.toJSON().put("transactions", z);
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    return null;
-                }
+                JSONObject jsonAccount = account.toJSON();
+                jsonAccount.put("transactions", jsonAccountTransactions);
+
+                jsonCustomerAccounts.put(jsonAccount);
+            }
             
-            }).collect(Collectors.toList()));
+            jsonCustomer.put("accounts", jsonCustomerAccounts);
 
-            return customer.toJSON().put("accounts", y);
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-            return null;
+            jsonCustomer = null;
         }
+
+        return jsonCustomer;
     }
 }

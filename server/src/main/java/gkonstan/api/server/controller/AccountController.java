@@ -23,6 +23,7 @@ public class AccountController {
       a.addTransaction(transactionId);
       AccountDatabaseConnector.getInstance().edit(a);
    }
+   
    public static Account createAndAddNewAccount(Customer customer) {
       Account toReturn = new Account(AccountDatabaseConnector.getInstance().getNextId(), customer.getId(), 0.0);
       AccountDatabaseConnector.getInstance().add(toReturn);
