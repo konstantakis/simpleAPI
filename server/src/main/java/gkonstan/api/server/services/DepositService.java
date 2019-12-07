@@ -19,18 +19,18 @@ public class DepositService {
     @RequestMapping(value = "/transaction/deposit/{accountId}", method = RequestMethod.POST)
     public ResponseEntity<Object> postDeposit(@PathVariable String accountId, @RequestParam double amound) {
       if(amound < 0.0){
-         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+         return new ResponseEntity<>("BAD_REQUEST, amound must be number greater than 0", HttpStatus.BAD_REQUEST);
       }
       
       Account account = AccountDatabaseConnector.getInstance().search(accountId);
       if(account == null){
-         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+         return new ResponseEntity<>("BAD_REQUEST, Account not found", HttpStatus.BAD_REQUEST);
       }
       
       /* create new account */
       Deposit newDeposit = DepositController.createAndAddNewDeposit(account, amound);
 
-      return new ResponseEntity<>("{\"depositId\" : \"" 
+      return new ResponseEntity<>("{\"transactionId\" : \"" 
          + newDeposit.getId() + "\"}", HttpStatus.CREATED);
    }
 
